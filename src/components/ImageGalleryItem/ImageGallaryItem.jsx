@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import { GallaryItem, Picture } from './ImageGalleryItem.styled'; 
+import { GallaryItem, Picture } from './ImageGallaryItem.styled'; 
 import PropTypes from 'prop-types';
-
-
 
 function ImageGalleryItem({pictures}) {
     return (
