@@ -6,3 +6,8 @@ export const AppContainer = styled.div`
     grid-gap: 16px;
     padding-bottom: 24px;
 `;
+
+export const ErrorContainer = styled.p`
+    font-size: 30px;
+    text-align: center;
+`;

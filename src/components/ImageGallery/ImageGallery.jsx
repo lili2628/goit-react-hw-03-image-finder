@@ -1,14 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { GallaryContainer } from './ImageGallery.styled'; 
 import PropTypes from 'prop-types';
+import ImageGalleryItem from 'components/ImageGalleryItem';
 
 
-function ImageGallery({ children }) {
-  return <GallaryContainer>{children}</GallaryContainer>;
+function ImageGallery({images, toggleModal}) {
+  return (
+    <GallaryContainer>
+      {images.map(({ id, tags, webformatURL, largeImageURL }) => (
+        <ImageGalleryItem
+          key={id}
+          tags={tags}
+          webformatURL={webformatURL}
+          largeImageURL={largeImageURL}
+          onClickItem={() => {
+            toggleModal(largeImageURL);
+          }}
+        />
+      ))}
+    </GallaryContainer>
+  );
 }
 
 export default ImageGallery;
 
 ImageGallery.propTypes = {
-  children: PropTypes.node.isRequired,
+  images: PropTypes.array,
+  onClickItem: PropTypes.func,
 };

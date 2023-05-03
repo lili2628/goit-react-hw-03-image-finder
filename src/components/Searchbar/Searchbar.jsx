@@ -1,32 +1,40 @@
 import React, {Component} from 'react';
 import { SearchbarContainer, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from './Searchbar.styled'; 
 import PropTypes from 'prop-types';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 class Searchbar extends Component { 
 
   state = {
     query: '',
+    page: 1,
   };
 
   onChangeInput = (e) => {
-    const { name, value } = e.currentTarget;
+    const value = e.currentTarget.value.toLowerCase();
 
     this.setState({
-      [name]: value,
+      query: value,
     });
   };
 
   onSubmitForm = (e) => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
+     if (this.state.query.trim() === '') {
+      toast.info('Enter your request.');
+      return;
+    }
+
+    this.props.onSubmit(this.state.query, this.state.page);
     this.resetForm();
   };
 
   resetForm = () => {
     this.setState({
       query: '',
+      page: 1,
     });
   };
 
@@ -34,7 +42,8 @@ class Searchbar extends Component {
     const { query } = this.state;
 
     return (
-        <SearchbarContainer>
+      <div>
+       <SearchbarContainer>
             <SearchForm onSubmit={this.onSubmitForm}>
                 <SearchFormButton type="submit">
                 <SearchFormButtonLabel>Search</SearchFormButtonLabel>
@@ -44,13 +53,15 @@ class Searchbar extends Component {
                     type="text"
                     name="query"
                     value={query}
-                    autocomplete="off"
+                    autoComplete="off"
                     autoFocus
                     placeholder="Search images and photos"
                     onChange={this.onChangeInput}
                 />
             </SearchForm>
-        </SearchbarContainer>
+        </SearchbarContainer> 
+        <ToastContainer autoClose={3000} theme={'colored'} />
+      </div>
     );
   }
 }
