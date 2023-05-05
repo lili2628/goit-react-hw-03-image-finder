@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import { SearchbarContainer, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from './Searchbar.styled'; 
 import PropTypes from 'prop-types';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-class Searchbar extends Component { 
+class Searchbar extends PureComponent { 
 
   state = {
     query: '',
@@ -22,8 +23,10 @@ class Searchbar extends Component {
   onSubmitForm = (e) => {
     e.preventDefault();
 
-     if (this.state.query.trim() === '') {
-      toast.info('Enter your request.');
+    if (this.state.query.trim() === '') {
+      toast.error('Enter your request.', {
+    position: toast.POSITION.TOP_RIGHT
+});
       return;
     }
 
@@ -60,7 +63,7 @@ class Searchbar extends Component {
                 />
             </SearchForm>
         </SearchbarContainer> 
-        <ToastContainer autoClose={3000} theme={'colored'} />
+        <ToastContainer autoClose={1000} theme={'colored'} />
       </div>
     );
   }
