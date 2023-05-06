@@ -31,17 +31,19 @@ export const SearchForm = styled.form`
 
 export const SearchFormButton = styled.button`
     display: inline-block;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border: 0;
-    background-image: url('');
-    background-size: 50%;
+    background-image: url('https://endlessicons.com/wp-content/uploads/2014/03/zoom-icon-614x460.png');
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.6;
+    opacity: 0.75;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     outline: none;
+    padding: 0;
+    margin-right: 10px;
 
     &:hover {
         opacity: 1;
